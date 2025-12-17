@@ -22,5 +22,8 @@ public class Main {
         PlainTextRotationReader txtRotationReader = new PlainTextRotationReader(path);
         List<String> fileLines = txtRotationReader.read();
         System.out.println(fileLines);
+        PlainTextRotationParser txtRotationParser = new PlainTextRotationParser(txtRotationReader);
+        List<Rotation> rotations = txtRotationParser.parse(fileLines);
+        System.out.println(rotations);
     }
 }

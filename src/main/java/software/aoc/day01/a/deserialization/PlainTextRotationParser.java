@@ -20,12 +20,23 @@ public class PlainTextRotationParser implements RotationParser {
 
     @Override
     public List<Rotation> parse(List<String> lines) {
-        lines.stream()
-                .forEach(line -> {rotations.add(rotationFromLine(line));});
+        lines.stream().forEach(this::addToRotations);
         return rotations;
     }
 
-    private Rotation rotationFromLine(String line) {
-        return new Rotation(Direction.valueOf(String.valueOf(line.charAt(0))), Integer.parseInt(line.substring(1)));
+    private void addToRotations(String line) {
+        rotations.add(rotationFromLine(line));
+    }
+
+    private static Rotation rotationFromLine(String line) {
+        return new Rotation(getDirection(line), getTimes(line));
+    }
+
+    private static Direction getDirection(String line) {
+        return Direction.valueOf(String.valueOf(line.charAt(0)));
+    }
+
+    private static int getTimes(String line) {
+        return Integer.parseInt(line.substring(1));
     }
 }
