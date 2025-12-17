@@ -20,18 +20,18 @@ public class PlainTextRotationReader implements RotationReader {
     @Override
     public List<String> read() {
         try (FileReader fileReader = new FileReader(this.filePath)) {
-            readRotation(fileReader);
+            readFile(fileReader);
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("Input file not found");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return fileRotations;
     }
 
-    private void readRotation(FileReader fileReader) {
+    private void readFile(FileReader fileReader) {
         new BufferedReader(fileReader)
                 .lines()
-                .forEach(line -> fileRotations.add(line));
+                .forEach(fileRotations::add);
     }
 }
