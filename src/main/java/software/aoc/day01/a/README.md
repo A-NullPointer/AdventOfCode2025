@@ -1,6 +1,11 @@
 Bibliotecas usadas:
 - Junit
 
+## TO DO:
+- Cambiar el readme a inglés
+- Cambiar a Constructores privados
+- Ver la responsabilidad de cada clase. Ejemplo el PlainTextRotationReader con la responsabilidad también de instanciar las clases que ha de usar como la del parser
+
 # Deciciones
 ## Modelado
 ¿Porqué decidi modelar en lugar de usar variables primitivas?
@@ -12,3 +17,5 @@ Bibliotecas usadas:
 ## Estructuración del proyecto - paquetes
 
 ## Error handling
+
+## Uml Diagram

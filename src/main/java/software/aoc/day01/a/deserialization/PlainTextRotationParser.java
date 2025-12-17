@@ -10,10 +10,7 @@ import java.util.List;
 
 public class PlainTextRotationParser implements RotationParser {
 
-    public List<Rotation> rotations;
-
     public PlainTextRotationParser() {
-        this.rotations = new ArrayList<>();
     }
 
     @Override

@@ -32,7 +32,7 @@ public class PlainTextRotationReader implements RotationReader {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return Rotations;
+        return this.Rotations;
     }
 
     private void readFile(FileReader fileReader) {
@@ -42,6 +42,6 @@ public class PlainTextRotationReader implements RotationReader {
     }
 
     private void addParsedRotation(String s) {
-        Rotations.add(parser.parse(s));
+        this.Rotations.add(this.parser.parse(s));
     }
 }
