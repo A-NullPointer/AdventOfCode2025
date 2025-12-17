@@ -10,25 +10,14 @@ import java.util.List;
 
 public class PlainTextRotationParser implements RotationParser {
 
-    public RotationReader reader;
     public List<Rotation> rotations;
 
-    public PlainTextRotationParser(PlainTextRotationReader reader) {
-        this.reader = reader;
+    public PlainTextRotationParser() {
         this.rotations = new ArrayList<>();
     }
 
     @Override
-    public List<Rotation> parse(List<String> lines) {
-        lines.stream().forEach(this::addToRotations);
-        return rotations;
-    }
-
-    private void addToRotations(String line) {
-        rotations.add(rotationFromLine(line));
-    }
-
-    private static Rotation rotationFromLine(String line) {
+    public Rotation parse(String line) {
         return new Rotation(getDirection(line), getTimes(line));
     }
 

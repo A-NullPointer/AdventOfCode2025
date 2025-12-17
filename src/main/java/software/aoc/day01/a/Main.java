@@ -15,15 +15,9 @@ public class Main {
         System.out.println(bufferedReader.readAllLines());
 
         String path = "C:/Users/asmae/Documents/INGENIERIA INFORMATICA/3 TERCERO/IS2/2025-26/AdventOfCode2025/AdventOfCode2025/src/main/resources/day01/a/inputs.txt";
-        FileReader fileReader = new FileReader(path);
-        bufferedReader = new BufferedReader(fileReader);
-        System.out.println(bufferedReader.readAllLines());
 
         PlainTextRotationReader txtRotationReader = new PlainTextRotationReader(path);
-        List<String> fileLines = txtRotationReader.read();
-        System.out.println(fileLines);
-        PlainTextRotationParser txtRotationParser = new PlainTextRotationParser(txtRotationReader);
-        List<Rotation> rotations = txtRotationParser.parse(fileLines);
+        List<Rotation> rotations = txtRotationReader.read();
         System.out.println(rotations);
     }
 }

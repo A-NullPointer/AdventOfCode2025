@@ -1,5 +1,9 @@
 package software.aoc.day01.a.io;
 
+import software.aoc.day01.a.deserialization.PlainTextRotationParser;
+import software.aoc.day01.a.deserialization.RotationParser;
+import software.aoc.day01.a.model.Rotation;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,15 +14,17 @@ import java.util.List;
 public class PlainTextRotationReader implements RotationReader {
 
     public final String filePath;
-    public List<String> fileRotations;
+    public RotationParser parser;
+    public List<Rotation> Rotations;
 
     public PlainTextRotationReader(String filePath) {
         this.filePath = filePath;
-        this.fileRotations = new ArrayList<>();
+        this.parser = new PlainTextRotationParser();
+        this.Rotations = new ArrayList<>();
     }
 
     @Override
-    public List<String> read() {
+    public List<Rotation> read() {
         try (FileReader fileReader = new FileReader(this.filePath)) {
             readFile(fileReader);
         } catch (FileNotFoundException e) {
@@ -26,12 +32,16 @@ public class PlainTextRotationReader implements RotationReader {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return fileRotations;
+        return Rotations;
     }
 
     private void readFile(FileReader fileReader) {
         new BufferedReader(fileReader)
                 .lines()
-                .forEach(fileRotations::add);
+                .forEach(this::addParsedRotation);
+    }
+
+    private void addParsedRotation(String s) {
+        Rotations.add(parser.parse(s));
     }
 }
