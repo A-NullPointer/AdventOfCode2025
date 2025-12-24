@@ -33,6 +33,7 @@ Correcto semánticamente: Modela "cada click" como pide el enunciado
 
 Complejidad controlada: Siempre O(n) donde n = total de times de todas las rotaciones
 ```
+- Cambiar la localización del archivo input a day01 sin a ni b pues lo usan ambos
 
 # Deciciones
 ## Modelado
