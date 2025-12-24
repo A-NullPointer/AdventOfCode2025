@@ -20,5 +20,6 @@ public class Main {
         Operation operation = new Operation(rotations, dial);
         int password = operation.obtainSequence();
         System.out.println("Password: " + password);
+
     }
 }

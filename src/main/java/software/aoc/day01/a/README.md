@@ -6,7 +6,22 @@
 - Cambiar a Constructores privados
 - Ver la responsabilidad de cada clase. Ejemplo el PlainTextRotationReader con la responsabilidad también de instanciar las clases que ha de usar como la del parser
 - Reducir la complejidad ciclomática -> Strategy pattern(polimorfismo) o solo descomponer en métodos privados¿?
-- 
+- Reducir complejidad ciclomática de los buscles de la clase Operation usando módulos 
+
+```python
+private void normalizeAndCheckPosition() {
+    int min = this.dial.getMin();
+    
+    // Normalizar usando aritmética modular
+    int offset = this.currentPosition - min;
+    this.currentPosition = ((offset % this.range + this.range) % this.range) + min;
+    
+    // Verificar si llegó al mínimo
+    if (isAtMinimum()) {
+        incrementSequenceCounter();
+    }
+}
+```
 
 # Deciciones
 ## Modelado
