@@ -16,7 +16,7 @@ public class PlainTextIdRangeReader implements IdRangeReader {
 
     public PlainTextIdRangeReader(String filePath, IdRangeParser parser) {
         this.filePath = filePath;
-        this.parser = parser; // ✓ DIP cumplido y liscov
+        this.parser = parser;
     }
 
     @Override

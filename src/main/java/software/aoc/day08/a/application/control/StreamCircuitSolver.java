@@ -12,7 +12,6 @@ public class StreamCircuitSolver implements CircuitAnalysisService {
     public long analyzeCircuits(List<JunctionBox> boxes, int connectionsToMake) {
         int n = boxes.size();
 
-        // 1. Generar TODAS las aristas y ordenarlas
         PriorityQueue<Edge> edges = new PriorityQueue<>();
 
         for (int i = 0; i < n; i++) {
@@ -23,12 +22,10 @@ public class StreamCircuitSolver implements CircuitAnalysisService {
 
         System.out.println("Total aristas generadas: " + edges.size());
 
-        // 2. Union-Find optimizado
         int[] parent = IntStream.range(0, n).toArray();
         int[] size = new int[n];
         Arrays.fill(size, 1);
 
-        // Función find con path compression
         java.util.function.IntUnaryOperator find = new java.util.function.IntUnaryOperator() {
             public int applyAsInt(int x) {
                 while (parent[x] != x) {
@@ -39,7 +36,6 @@ public class StreamCircuitSolver implements CircuitAnalysisService {
             }
         };
 
-        // 3. PROCESAR las K aristas más cortas (no hacer K conexiones)
         int edgesProcessed = 0;
         int successfulConnections = 0;
         int skippedConnections = 0;
@@ -71,7 +67,6 @@ public class StreamCircuitSolver implements CircuitAnalysisService {
         System.out.println("Conexiones exitosas: " + successfulConnections);
         System.out.println("Conexiones saltadas: " + skippedConnections);
 
-        // 4. Contar tamaños de componentes
         Map<Integer, Integer> componentSizes = new HashMap<>();
         for (int i = 0; i < n; i++) {
             int root = find.applyAsInt(i);
@@ -83,7 +78,6 @@ public class StreamCircuitSolver implements CircuitAnalysisService {
         sizes.sort(Comparator.reverseOrder());
         System.out.println("Top 3 tamaños: " + sizes.subList(0, Math.min(3, sizes.size())));
 
-        // 5. Multiplicar las 3 más grandes
         return componentSizes.values().stream()
                 .sorted(Comparator.reverseOrder())
                 .limit(3)

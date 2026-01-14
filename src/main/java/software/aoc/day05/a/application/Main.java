@@ -27,7 +27,6 @@ public class Main {
         System.out.println("Id ranges:" + idRanges);
         System.out.println("Ingredient ids:" + ingredientIds);
 
-        // Verificar frescura
         FreshnessChecker checker = new FreshnessChecker(idRanges);
         long freshCount = checker.countFresh(ingredientIds);
         System.out.println("\nFresh ingredients count: " + freshCount);

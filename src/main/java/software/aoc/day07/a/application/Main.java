@@ -11,7 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            // Cargar manifold
             PlainTextReader reader = new PlainTextReader(INPUT_FILE);
             ManifoldParser parser = new ManifoldParser();
 
@@ -22,7 +21,6 @@ public class Main {
             System.out.println("  Posición inicial: " + manifold.getStartPosition());
             System.out.println();
 
-            // Simular
             BeamSimulator simulator = new BeamSimulator(manifold);
             int splits = simulator.simulate();
 

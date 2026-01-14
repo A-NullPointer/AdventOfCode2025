@@ -14,7 +14,6 @@ public class Solver {
     public Solver(BankReader reader) {
         this.reader = reader;
     }
-    // ✓ DIP: depende de abstracciones
 
     public long solve() {
         List<Bank> banks = reader.read();

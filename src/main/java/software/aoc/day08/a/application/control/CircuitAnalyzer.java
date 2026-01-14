@@ -13,14 +13,13 @@ public class CircuitAnalyzer {
     public static void main(String[] args) {
         String filePath = "src/main/resources/input.txt";
 
-        // Cargar cajas
         List<JunctionBox> boxes = new JunctionBoxParser()
                 .parse(new PlainTextReader(filePath).read().collect(Collectors.toList()));
 
         int n = boxes.size();
         int[] parent = IntStream.range(0, n).toArray();
 
-        // Generar y ordenar todas las aristas por distancia
+
         List<Edge> edges = IntStream.range(0, n)
                 .boxed()
                 .flatMap(i -> IntStream.range(i + 1, n)
@@ -29,7 +28,6 @@ public class CircuitAnalyzer {
                 .limit(1000)
                 .collect(Collectors.toList());
 
-        // Union-Find functions
         java.util.function.IntUnaryOperator find = new java.util.function.IntUnaryOperator() {
             public int applyAsInt(int x) {
                 while (parent[x] != x) {
@@ -40,14 +38,12 @@ public class CircuitAnalyzer {
             }
         };
 
-        // Conectar aristas
         edges.forEach(e -> {
             int rootA = find.applyAsInt(e.a);
             int rootB = find.applyAsInt(e.b);
             if (rootA != rootB) parent[rootB] = rootA;
         });
 
-        // Contar tamaños de componentes
         Map<Integer, Long> componentSizes = IntStream.range(0, n)
                 .boxed()
                 .collect(Collectors.groupingBy(
@@ -55,7 +51,6 @@ public class CircuitAnalyzer {
                         Collectors.counting()
                 ));
 
-        // Obtener 3 componentes más grandes y multiplicar
         long result = componentSizes.values().stream()
                 .sorted(Comparator.reverseOrder())
                 .limit(3)

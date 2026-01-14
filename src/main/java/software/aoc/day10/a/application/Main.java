@@ -1,13 +1,11 @@
 package software.aoc.day10.a.application;
 
-import software.aoc.day10.a.application.controller.Part2TotalPressesCalculator;
 import software.aoc.day10.a.application.controller.SolutionCalculator;
 import software.aoc.day10.a.application.factory.MachineSolverFactory;
 import software.aoc.day10.a.application.persistence.deserialization.MachineLineTokenizer;
 import software.aoc.day10.a.application.persistence.deserialization.MachineParser;
 import software.aoc.day10.a.application.persistence.io.Loader;
 import software.aoc.day10.a.application.persistence.io.PlainTextReader;
-import software.aoc.day10.a.application.service.GlpkJoltageMinPressSolver;
 import software.aoc.day10.a.application.service.MeetInMiddleMinPressSolver;
 import software.aoc.day10.a.domain.model.Machine;
 import software.aoc.day10.a.domain.persistence.deserialization.Parser;
@@ -29,9 +27,13 @@ public class Main {
 
         List<Machine> machines = loader.obtainMachines();
 
-        MachineSolver solver = new GlpkJoltageMinPressSolver();
-        int total = new Part2TotalPressesCalculator(solver).solveParallel(machines);
-        System.out.println(total);
+        MachineSolver part1Solver = new MeetInMiddleMinPressSolver();
+        MachineSolver part2Solver = part1Solver; // mientras shakes se ignoran, part2 == part1
 
+        MachineSolverFactory factory = new MachineSolverFactory(part1Solver, part2Solver);
+        SolutionCalculator calculator = new SolutionCalculator(factory.forPart(part));
+
+        int answer = calculator.calculateTotalMinimumPresses(machines);
+        System.out.println(answer);
     }
 }

@@ -24,7 +24,6 @@ public record Bank(String batteries) {
         for (int i = 0; i < n; i++) {
             char current = batteries.charAt(i);
 
-            // Eliminar dígitos menores mientras sea beneficioso
             while (result.length() > 0 &&
                     result.charAt(result.length() - 1) < current &&
                     toRemove > 0) {
@@ -35,7 +34,6 @@ public record Bank(String batteries) {
             result.append(current);
         }
 
-        // Eliminar del final si sobran dígitos
         result.setLength(REQUIRED_DIGITS);
 
         return Long.parseLong(result.toString());

@@ -15,7 +15,6 @@ public class Solver {
         this.reader = reader;
         this.validator = validator;
     }
-    // ✓ DIP: depende de abstracciones
 
     public long solve() {
         List<IdRange> ranges = reader.read();
