@@ -1,0 +1,32 @@
+package software.aoc.day02.a.application.control;
+
+import software.aoc.day02.a.domain.persistence.io.IdRangeReader;
+import software.aoc.day02.a.domain.model.IdRange;
+import software.aoc.day02.a.domain.validators.IdValidator;
+
+import java.util.List;
+
+// TODO: Elejir en qué capa de la arquitectura debería de estar
+public class Solver {
+    private final IdRangeReader reader;
+    private final IdValidator validator;
+
+    public Solver(IdRangeReader reader, IdValidator validator) {
+        this.reader = reader;
+        this.validator = validator;
+    }
+    // ✓ DIP: depende de abstracciones
+
+    public long solve() {
+        List<IdRange> ranges = reader.read();
+        return calculateSumOfInvalidIds(ranges);
+    }
+
+    private long calculateSumOfInvalidIds(List<IdRange> ranges) {
+        return ranges.stream()
+                .flatMap(IdRange::stream)
+                .filter(validator::isInvalid)
+                .mapToLong(Long::longValue)
+                .sum();
+    }
+}

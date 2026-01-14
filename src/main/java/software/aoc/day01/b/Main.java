@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String path = "C:/Users/asmae/Documents/INGENIERIA INFORMATICA/3 TERCERO/IS2/2025-26/AdventOfCode2025/AdventOfCode2025/src/main/resources/day01/a/inputs.txt";
+        String path = "C:/Users/asmae/Documents/INGENIERIA INFORMATICA/3 TERCERO/IS2/2025-26/AdventOfCode2025/AdventOfCode2025/src/main/resources/day01/inputs.txt";
 
         PlainTextRotationReader txtRotationReader = new PlainTextRotationReader(path);
         List<Rotation> rotations = txtRotationReader.read();

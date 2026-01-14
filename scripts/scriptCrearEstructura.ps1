@@ -1,0 +1,1 @@
+@('application\persistence\io','application\persistence\deserialization','application\validators','domain\persistence\io','domain\persistence\deserialization','domain\model','domain\validators') | ForEach-Object { New-Item -Path $_ -ItemType Directory -Force | Out-Null }

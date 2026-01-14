@@ -4,6 +4,4 @@ import org.junit.Test;
 
 public class Day01ATest {
 
-    @Test
-    public void
 }
